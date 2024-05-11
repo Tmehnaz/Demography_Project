@@ -1,13 +1,18 @@
 const express = require('express');
 const db = require('./dbConnection');
 const { nanoid } = require('nanoid');
+const session = require('express-session');
 const router = express.Router();
+
 
 //Homepage GET request
 
 router.get('/sessionid', (req,res)=>{
     try{
-        req.session_id = nanoid(8);
+        const nano_id = nanoid(8); //creating nanoid of length 8(session id)
+        req.session.nano_id = nano_id; // storing the session id
+        const session_id = req.session.nano_id; // retrieving the session_id
+        
         if(!session_id){
             return res.status(404).send({
                 success:false,

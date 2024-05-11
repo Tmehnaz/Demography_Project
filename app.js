@@ -7,6 +7,7 @@ const router = require('./data_collection');
 //middleware function
 app.use(cors());
 app.use(express.json());
+
 app.use('/api/homepage',router);
 
 
