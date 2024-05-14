@@ -1,38 +1,14 @@
 const express = require('express');
 const db = require('./dbConnection');
-const { nanoid } = require('nanoid');
-const session = require('express-session');
+
+
+
 const router = express.Router();
 
 
-//Homepage GET request
+//
 
-router.get('/sessionid', (req,res)=>{
-    try{
-        const nano_id = nanoid(8); //creating nanoid of length 8(session id)
-        req.session.nano_id = nano_id; // storing the session id
-        const session_id = req.session.nano_id; // retrieving the session_id
-        
-        if(!session_id){
-            return res.status(404).send({
-                success:false,
-                message:"Session ID was not found"  
-            })
-        }
-        res.status(201).send({
-            success:true,
-            message:"Session_id has been created",
-            session_id
-        })
-    }catch(err){
-        console.log("Couldn't genrate session id");
-        res.status(500).send({
-            success:false,
-            message:"Error in generating session_id",
-            err
-        })
-    }
-}) 
+
 
 //Homepage data colelction
 router.post('/collectdata',async (req,res)=>{
